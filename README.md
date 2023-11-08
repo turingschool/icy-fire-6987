@@ -81,6 +81,16 @@ and I can see a unique list of names of all the ingredients that this chef uses.
 ```
  
 Extension
+1 of 2
+```
+As a visitor
+When I visit a dish's show page
+I see a button next to each ingredient to delete that ingredient from a dash
+And when I click that button
+I am redirected back to that page
+And the ingredient is no longer listed.
+```
+2 of 2
 ```
 As a visitor
 When I visit a chef's show page
