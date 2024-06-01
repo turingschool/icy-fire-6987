@@ -19,6 +19,7 @@ RSpec.describe Chef, type: :model do
     @ingredient3 = Ingredient.create!(name:"Bacon", calories: 200)
     DishIngredient.create!(dish_id: @dish1.id, ingredient_id: @ingredient1.id)
     DishIngredient.create!(dish_id: @dish1.id, ingredient_id: @ingredient2.id)
+    DishIngredient.create!(dish_id: @dish1.id, ingredient_id: @ingredient2.id)
   end
 
   describe "instance methods" do
