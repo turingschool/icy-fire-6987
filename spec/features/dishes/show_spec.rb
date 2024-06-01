@@ -13,7 +13,6 @@ RSpec.describe "the dishes show page" do
   end
 
   describe "US 1" do
-
     it "When I visit a dish's show page
     I see the dish’s name and description
     And I see a list of ingredients for that dish
@@ -30,7 +29,6 @@ RSpec.describe "the dishes show page" do
   end
 
   describe "US 2" do
-
     it "When I visit a dish's show page
     I see a form to add an existing Ingredient to that Dish
     When I fill in the form with the ID of an Ingredient that exists in the database
@@ -43,7 +41,7 @@ RSpec.describe "the dishes show page" do
 
       fill_in "ingredient", with: "#{@ingredient3.name}"
       click_on "Submit"
-# save_and_open_page
+
       expect(page).to have_content("Name: #{@dish1.name}")
       expect(page).to have_content("Description: #{@dish1.description}")
       expect(page).to have_content("Ingredients: #{@ingredient1.name}, #{@ingredient2.name}, #{@ingredient3.name}")
@@ -51,5 +49,4 @@ RSpec.describe "the dishes show page" do
       expect(page).to have_content("Chef: #{@dish1.chef.name}")
     end
   end
-
 end
