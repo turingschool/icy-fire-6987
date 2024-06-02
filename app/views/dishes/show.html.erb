@@ -9,3 +9,7 @@
 <% end %>
 
 <p> Total Calories: <%= @dish.total_calories %></p>
+
+<%= form_with url: "/dishes/#{@dish.id}/ingredients", method: :post, local: true, data: { turbo: false } do |form| %>
+  <%= form.label :ingredient_id %>
+  <%= form.text_field :ingredient_id%>
