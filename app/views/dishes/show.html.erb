@@ -12,4 +12,6 @@
 
 <%= form_with url: "/dishes/#{@dish.id}/ingredients", method: :post, local: true, data: { turbo: false } do |form| %>
   <%= form.label :ingredient_id %>
-  <%= form.text_field :ingredient_id%>
+  <%= form.text_field :ingredient_id %>
+  <%= form.submit "Add Ingredient" %>
+<% end %>
