@@ -39,7 +39,6 @@ RSpec.describe 'the show dishes page' do
       expect(current_path).to eq("/dishes/#{spag.id}")
       expect(page).to have_content("Ingredient name: #{parmesan.name}")
       expect(page).to have_content("Calories: #{parmesan.calories}")
-      save_and_open_page
       
     end
   end
