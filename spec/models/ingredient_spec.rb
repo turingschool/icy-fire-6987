@@ -12,8 +12,8 @@ RSpec.describe Ingredient, type: :model do
   end
 
   describe "relationships" do
-      it { should have_many :dish_ingredients }
-      it { should have_many(:dishes).through(:dish_ingredients)}
+    it { should have_many :dish_ingredients }
+    it { should have_many(:dishes).through(:dish_ingredients)}
   end
 
   describe "class methods" do
