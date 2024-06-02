@@ -7,3 +7,11 @@
   <h2>Calorie Count: <%= @dish.ingredients.calorie_count %><h2>
   <h2>Chef: <%= @dish.chef.name %></h2>
 </div>
+
+<div id="ingredient_form">
+    <%= form_with url: dish_dish_ingredients_path(@dish.id), method: :post, data: {turbo:false} do |f| %>
+      <%= f.label :ingredient_id, "Ingredient ID" %>
+      <%= f.number_field :ingredient_id %>
+      <%= f.submit "Submit" %>
+    <% end %>
+</div>
