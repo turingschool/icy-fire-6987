@@ -9,7 +9,6 @@
 <h3>Total Calories: </h3><%= total_calories %>
 
 <h3>Add More of an Existing Ingredient</h3>
-
 <%= form_with url: "/dishes/#{@dish.id}/ingredients", method: :post, data: { turbo: false } do |form| %>
   <%= form.label :ingredient_id %>
   <%= form.text_field :ingredient_id %>

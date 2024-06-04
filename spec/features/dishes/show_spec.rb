@@ -36,6 +36,9 @@ RSpec.describe "Dish Show Page", type: :feature do
         expect(page).to have_content(@ingredient.name)
         expect(page).to have_content(@ingredient2.name)
         expect(page).to have_content(@ingredient3.name)
+
+        total_calories = (@ingredient.calories + @ingredient2.calories + @ingredient3.calories) 
+        expect(page).to have_content(total_calories)
       end
 # As a visitor
 # When I visit a dish's show page
@@ -48,10 +51,11 @@ RSpec.describe "Dish Show Page", type: :feature do
         visit "/dishes/#{@dish.id}"
       
         fill_in :ingredient_id, with: @ingredient4.id
+        
         click_button :submit
 
         expect(current_path).to eq("/dishes/#{@dish.id}")
-        save_and_open_page
+        expect(page).to have_content(@ingredient4.name)
       end
     end
   end
