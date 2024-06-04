@@ -22,4 +22,13 @@ RSpec.describe "dish show page" do
     expect(page).to have_content("Name: Chicken and Rice")
     expect(page).to have_content("Ingredients: Chicken Thigh, Rice, and Teriyaki Sauce")
   end
+
+  it "has a field that can add existing ingredients by id number" do
+    visit dish_path(@dish)
+
+    fill_in "Ingredient", with: "#{@ingredient4.id}"
+    click_button "Submit"
+
+    expect(page).to have_content("Chicken Thigh, Rice, Teriyaki Sauce, and Scallions")
+  end
 end

@@ -2,3 +2,10 @@
 
 <p>Name: <%=@dish.name%></p>
 <p>Ingredients: <%=@all_ingredient_names.to_sentence%></p>
+
+<%= form_with url: dish_ingredients_path(@dish), method: :post, local: true do |f| %>
+  <%= f.label :ingredient_id %>
+  <%= f.number_field :ingredient_id %>
+
+  <%= f.submit "Submit" %>
+<% end %>
