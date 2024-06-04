@@ -3,8 +3,9 @@
 
 <p> <%= @dish.description %> </p>
 
+<h3> Dish Ingredients </h3>
+
 <div id="dish_ingredient_list">
-<h3> Dish Ingredients <h3>
   <% @dish.ingredients.each do |ingredient| %>
     <p> <%= ingredient.name %> </p>
   <% end %>
@@ -12,3 +13,12 @@
 
 <h3> Calorie Count </h3>
 <p> Calories: <%= @dish_calories %> </p>
+
+<h2>Add Existing Ingredient To Dish</h2>
+<%= form_with url: dish_path(@dish), method: :patch, local: true do |form| %>
+  <div>
+    <%= form.label :ingredient_id, "Ingredient ID" %>
+    <%= form.select :ingredient_id, Ingredient.all.map { |ingredient| [ingredient.name, ingredient.id] }, { include_blank: true } %>
+    <%= form.submit "Submit", form: { action: dish_path(@dish) } %>
+  </div>
+<% end %>
