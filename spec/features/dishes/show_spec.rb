@@ -8,6 +8,7 @@ RSpec.describe 'Dish Show Page' do
     @cheese = Ingredient.create(name: 'Cheese', calories: 50)  
     @dough = Ingredient.create(name: 'Dough', calories: 200)
     @sauce = Ingredient.create(name: 'Sauce', calories: 75)
+    @chicken = Ingredient.create(name: 'Chicken', calories: 150)
     DishIngredient.create(dish_id: @dish1.id, ingredient_id: @pepperoni.id)
     DishIngredient.create(dish_id: @dish1.id, ingredient_id: @cheese.id)
     DishIngredient.create(dish_id: @dish1.id, ingredient_id: @dough.id)
@@ -29,10 +30,12 @@ RSpec.describe 'Dish Show Page' do
         expect(page).to have_content('Cheese')
         expect(page).to have_content('Dough')
         expect(page).to have_content('Sauce')
+        expect(page).to_not have_content('Chicken')
       end
     end
 
     it 'displays the total calorie count for the dish' do
+      save_and_open_page
       within('.calories') do
         expect(page).to have_content('Total Calories: 425')
       end
