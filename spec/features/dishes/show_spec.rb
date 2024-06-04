@@ -73,7 +73,7 @@ RSpec.describe "Dish show page" do
 
       select "Salt", from: "Ingredient"
       click_button "Submit"
-
+      
       expect(current_path).to eq(dish_path(dish_1))
       
       within ("#dish_ingredient_list") do

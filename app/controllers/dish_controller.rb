@@ -13,18 +13,15 @@ class DishController < ApplicationController
 
   def update
     @dish = Dish.find(params[:id])
-    ingredient = Ingredient.find(params[:dish][:ingredient_id])
+    ingredient = Ingredient.find(params[:ingredient_id])
     
-    if @dish.ingredients << ingredient
-      redirect_to @dish, notice: 'Ingredient was successfully added.'
-    else
-      redirect_to @dish, alert: 'Failed to add ingredient.'
-    end
+    @dish.ingredients << ingredient
+    redirect_to @dish
   end
   
   private
 
   def dish_params
-    params.require(:dish).permit(:name, :description)
+    params.permit(:name, :description)
   end
 end

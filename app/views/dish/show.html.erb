@@ -15,7 +15,7 @@
 <p> Calories: <%= @dish_calories %> </p>
 
 <h2>Add Existing Ingredient To Dish</h2>
-<%= form_with url: dish_path(@dish), method: :patch, local: true do |form| %>
+<%= form_with model: @dish, local: true do |form| %>
   <div>
     <%= form.label :ingredient_id, "Ingredient ID" %>
     <%= form.select :ingredient_id, Ingredient.all.map { |ingredient| [ingredient.name, ingredient.id] }, { include_blank: true } %>
