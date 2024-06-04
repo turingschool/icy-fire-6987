@@ -3,5 +3,7 @@ Rails.application.routes.draw do
     resources :ingredients
     resources :dish_ingredients, only: [:create]
   end
+
+  resources :chefs
   
 end
