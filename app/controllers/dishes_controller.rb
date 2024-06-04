@@ -1,8 +1,8 @@
 class DishesController < ApplicationController
 
   def show
-    @chef = Chef.find(params[:id])
     @dish = Dish.find(params[:id])
+    @ingredient = @dish.ingredients.find(params[:id])
   end
 
 end
