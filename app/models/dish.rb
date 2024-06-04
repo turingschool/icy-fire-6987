@@ -5,9 +5,7 @@ class Dish < ApplicationRecord
   has_many :dish_ingredients
   has_many :ingredients, through: :dish_ingredients
 
-  def dish_ingredients
-  end
-
-  def total_calories
+  def calorie_count
+    ingredients.sum(:calories)
   end
 end
