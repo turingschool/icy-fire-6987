@@ -37,8 +37,17 @@ RSpec.describe 'dish show page' do
       DishIngredient.create!(dish: dish_1, ingredient: ingredient_2)
 
       visit dish_path(dish_1)
-      
+      save_and_open_page
       expect(page).to have_content(100)
+    end
+
+    it "I see the chef's name" do
+      chef_1 = Chef.create!(name: "Jaque")
+      dish_1 = chef_1.dishes.create!(name: "Omlette", description: "Greek style")
+
+      visit dish_path(dish_1)
+
+      expect(page).to have_content("Jaque")
     end
   end
 end
