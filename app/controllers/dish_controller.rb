@@ -1,4 +1,4 @@
-class DishController < ActionController
+class DishController < ApplicationController
   def index
     @dishes = Dish.all
   end
@@ -14,7 +14,8 @@ class DishController < ActionController
   end
 
   private
+
   def dish_params
-    params.require(:dish).permit(:name, :description
+    params.require(:dish).permit(:name, :description)
   end
 end
