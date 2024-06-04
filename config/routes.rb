@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :dish_ingredients, only: [:create]
   end
 
-  resources :chefs
+  resources :chefs do
+    resources :ingredients
+  end
   
 end

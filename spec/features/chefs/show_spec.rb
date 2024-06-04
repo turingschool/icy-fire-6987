@@ -20,6 +20,8 @@ RSpec.describe 'Chef Show Page' do
     it 'has a link to all a chefs ingredients' do
       expect(page).to have_content("Ingredients")
 
+      click_link("Ingredients")
+
       expect(current_path).to eq(chef_ingredients_path(@chef1))
     end
   end
