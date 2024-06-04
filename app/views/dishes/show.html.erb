@@ -14,3 +14,12 @@
   <h2>Calories</h2>
   <p>Total Calories: <%= @dish.calorie_count %></p>
 </div>
+
+<div class="add-ingredient">
+  <h3>Add an Ingredient to this Dish</h3>
+  <%= form_with(model: [@dish, DishIngredient.new], url: dish_dish_ingredients_path(@dish), data: {turbo: false}) do |f| %>
+      <%= f.label :ingredient_id, "id" %><br>
+      <%= f.text_field :ingredient_id %>
+      <%= f.submit "Submit" %>
+  <% end %>
+<div>

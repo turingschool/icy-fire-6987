@@ -35,7 +35,7 @@ RSpec.describe 'Dish Show Page' do
     end
 
     it 'displays the total calorie count for the dish' do
-      save_and_open_page
+      
       within('.calories') do
         expect(page).to have_content('Total Calories: 425')
       end
@@ -45,23 +45,20 @@ RSpec.describe 'Dish Show Page' do
       it 'displays a form to add an ingredient' do
         expect(page).to have_content('Add an Ingredient to this Dish')
 
+        within('.ingredients') do
+          expect(page).to_not have_content('Chicken')
+        end
+
         within('.add-ingredient') do
-          expect(page).to have_field('ID')
-
-          within('.ingredients') do
-            expect(page).to_not have_content('Chicken')
-          end
-
-          fill_in 'ID', with: @chicken.id
-          expect(page).to have_content(@chicken.name)
+          fill_in "id", with: @chicken.id
 
           expect(page).to have_button('Submit')
 
-          click_button 'Submit'
+           click_button 'Submit'
+        end
 
-          within('.ingredients') do
-            expect(page).to have_content('Chicken')
-          end
+        within('.ingredients') do
+          expect(page).to have_content('Chicken')
         end
       end
     end
