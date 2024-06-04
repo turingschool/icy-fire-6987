@@ -25,6 +25,19 @@ RSpec.describe Dish, type: :model do
 
         expect(dish.total_calories).to eq(300)
       end
+      it "can create a new dish ingredient" do
+        chef = Chef.create!(name: "Gordon Ramsay")
+        dish = Dish.create!(name: "Grilled Cheese", description: "A Sandwhich as old as time, so simple yet so delicious", chef_id: chef.id)
+        ingredient_1 = Ingredient.create!(name: "Cheese", calories: 100)
+        ingredient_2 = Ingredient.create!(name: "Bread", calories: 200)
+        ingredient_3 = Ingredient.create!(name: "Tomato", calories: 50)
+        DishIngredient.create!(dish_id: dish.id, ingredient_id: ingredient_1.id)
+        DishIngredient.create!(dish_id: dish.id, ingredient_id: ingredient_2.id)
+
+        dish.add_ingredient(ingredient_3.id)
+
+        expect(dish.ingredients).to eq([ingredient_1, ingredient_2, ingredient_3])
+      end
     end
   end
 
