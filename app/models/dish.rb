@@ -3,9 +3,4 @@ class Dish < ApplicationRecord
   belongs_to :chef
   has_many :ingredient_dishes
   has_many :ingredients, through: :ingredient_dishes
-
-  def self.total_calories
-    @dish = Dish.find(params[:id])
-    require 'pry'; binding.pry
-  end
 end

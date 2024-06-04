@@ -37,6 +37,22 @@ RSpec.describe "Dish Show Page", type: :feature do
         expect(page).to have_content(@ingredient2.name)
         expect(page).to have_content(@ingredient3.name)
       end
+# As a visitor
+# When I visit a dish's show page
+# I see a form to add an existing Ingredient to that Dish
+# When I fill in the form with the ID of an Ingredient that exists in the database
+# And I click Submit
+# Then I am redirected to that dish's show page
+# And I see that ingredient is now listed. 
+      it "allows me to add ingredients by ID" do
+        visit "/dishes/#{@dish.id}"
+      
+        fill_in :ingredient_id, with: @ingredient4.id
+        click_button :submit
+
+        expect(current_path).to eq("/dishes/#{@dish.id}")
+        save_and_open_page
+      end
     end
   end
 end
