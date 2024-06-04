@@ -38,12 +38,13 @@ RSpec.describe "Dish Show Page" do
                 ingredient_2 = Ingredient.create!(name: "Bread", calories: 200)
                 ingredient_3 = Ingredient.create!(name: "Tomato", calories: 50)
                 DishIngredient.create!(dish_id: dish.id, ingredient_id: ingredient_1.id)
+                DishIngredient.create!(dish_id: dish.id, ingredient_id: ingredient_2.id)
 
                 visit "/dishes/#{dish.id}"
 
                 within("#add_ingredient") do
                     fill_in :ingredient_id, with: ingredient_3.id
-                    click_on "Add Ingredient"
+                    click_on "Submit"
                 end
 
                 expect(current_path).to eq("/dishes/#{dish.id}")

@@ -8,4 +8,8 @@ class Dish < ApplicationRecord
   def total_calories
     ingredients.sum(:calories)
   end
+
+  def add_ingredient(ingredient_id)
+    DishIngredient.create(dish_id: self.id, ingredient_id: ingredient_id)
+  end
 end

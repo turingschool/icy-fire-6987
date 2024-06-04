@@ -12,3 +12,17 @@
             <li><%= ingredient.name %></li>
         <% end %>
     </ul>
+</div>
+
+<div id="add_ingredient">
+    <h2>Add an Ingredient</h2>
+    <%= form_with(url: dish_dish_ingredients_path(@dish), method: :post, local: true) do |form| %>
+    <div>
+        <%= form.label :ingredient_id, "Ingredient ID" %>
+        <%= form.number_field :ingredient_id %>
+    </div>
+    <div>
+        <%= form.submit "Submit" %>
+    </div>
+    <% end %>
+</div>
