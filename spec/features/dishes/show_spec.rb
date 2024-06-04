@@ -7,11 +7,10 @@ RSpec.describe 'Dish Show Page' do
     cheese = Ingredient.create(name: 'Cheese', calories: 50)  
     dough = Ingredient.create(name: 'Dough', calories: 200)
     sauce = Ingredient.create(name: 'Sauce', calories: 75)
-    create(:dish_ingredient, dish: dish, ingredient: pepperoni)
-    create(:dish_ingredient, dish: dish, ingredient: cheese)
-    create(:dish_ingredient, dish: dish, ingredient: dough)
-    create(:dish_ingredient, dish: dish, ingredient: sauce)
-
+    DishIngredient.create(dish_id: dish.id, ingredient_id: pepperoni.id)
+    DishIngredient.create(dish_id: dish.id, ingredient_id: cheese.id)
+    DishIngredient.create(dish_id: dish.id, ingredient_id: dough.id)
+    DishIngredient.create(dish_id: dish.id, ingredient_id: sauce.id)
     visit "/dishes/#{dish.id}"
   end
 
