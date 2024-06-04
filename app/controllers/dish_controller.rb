@@ -12,11 +12,16 @@ class DishController < ApplicationController
   end
 
   def update
+    @dish = Dish.find(params[:id])
+    ingredient = Ingredient.find(params[:ingredient_id])
+    
+    @dish.ingredients << ingredient
+    redirect_to @dish
   end
-
+  
   private
 
   def dish_params
-    params.require(:dish).permit(:name, :description)
+    params.permit(:name, :description)
   end
 end
