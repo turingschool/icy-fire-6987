@@ -37,7 +37,7 @@ RSpec.describe 'dish show page' do
       DishIngredient.create!(dish: dish_1, ingredient: ingredient_2)
 
       visit dish_path(dish_1)
-      save_and_open_page
+    
       expect(page).to have_content(100)
     end
 
@@ -48,6 +48,46 @@ RSpec.describe 'dish show page' do
       visit dish_path(dish_1)
 
       expect(page).to have_content("Jaque")
+    end
+  end
+
+  describe "form" do
+    it "I see a form to add an existing Ingredient to that Dish" do
+      chef_1 = Chef.create!(name: "Jaque")
+      dish_1 = chef_1.dishes.create!(name: "Omlette", description: "Greek style")
+      ingredient_1 = Ingredient.create!(name: "egg", calories: 60)
+      ingredient_2 = Ingredient.create!(name: "cheese", calories: 40)
+      ingredient_3 = Ingredient.create!(name: "ice cream", calories: 100)
+      DishIngredient.create!(dish: dish_1, ingredient: ingredient_1)
+      DishIngredient.create!(dish: dish_1, ingredient: ingredient_2)
+
+      visit dish_path(dish_1)
+
+      # expect(page).to have_field("Ingredient id")
+      expect(page).to have_content("Ingredient id")
+
+      #form will accept ID of ingredient, pass it as params to DishIngredient controller, Create action. Id of dish will be present in url?
+    end
+
+    it "I fill in ID of an Ingredient that exists, click Submit, I am redirected to that dish's show page and I see that ingredient is now listed" do
+      chef_1 = Chef.create!(name: "Jaque")
+      dish_1 = chef_1.dishes.create!(name: "Omlette", description: "Greek style")
+      ingredient_1 = Ingredient.create!(name: "egg", calories: 60)
+      ingredient_2 = Ingredient.create!(name: "cheese", calories: 40)
+      ingredient_3 = Ingredient.create!(name: "ice cream", calories: 100)
+      DishIngredient.create!(dish: dish_1, ingredient: ingredient_1)
+      DishIngredient.create!(dish: dish_1, ingredient: ingredient_2)
+
+      visit dish_path(dish_1)
+
+      expect(page).to_not have_content(ingredient_3.name)
+
+      fill_in :ingredient_id, with: "#{ingredient_3.id}"
+      click_button "Submit"
+      save_and_open_page
+      expect(current_path).to eq(dish_path(dish_1))
+      expect(page).to have_content(ingredient_3.name)
+      expect(page).to have_content("Total Calories: 200")
     end
   end
 end
