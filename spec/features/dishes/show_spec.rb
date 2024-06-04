@@ -16,4 +16,24 @@ RSpec.describe "Dish Show Page" do
         expect(page).to have_content(@dish.name)
         expect(page).to have_content(@dish.description)
     end
+
+    it "should show a list of ingredients" do
+        visit dish_path(@dish)
+
+        @dish.ingredients. each do |ingredient|
+            expect(page).to have_content(ingredient.name)
+        end
+    end
+
+    it "should show the total amount of calories" do
+        visit dish_path(@dish)
+
+        expect(page).to have_content("Total Calories: 600")
+    end
+
+    it "should show the chef's name" do
+        visit dish_path(@dish)
+
+        expect(page).to have_content(@chef.name)
+    end
 end
