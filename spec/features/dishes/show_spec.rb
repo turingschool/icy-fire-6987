@@ -84,7 +84,7 @@ RSpec.describe 'dish show page' do
 
       fill_in :ingredient_id, with: "#{ingredient_3.id}"
       click_button "Submit"
-      save_and_open_page
+      
       expect(current_path).to eq(dish_path(dish_1))
       expect(page).to have_content(ingredient_3.name)
       expect(page).to have_content("Total Calories: 200")
