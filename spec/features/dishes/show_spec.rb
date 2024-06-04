@@ -27,5 +27,18 @@ RSpec.describe 'dish show page' do
       expect(page).to have_content(ingredient_2.name)
       expect(page).to_not have_content(ingredient_3.name)
     end
+
+    it "I see a total calorie count for that dish" do
+      chef_1 = Chef.create!(name: "Jaque")
+      dish_1 = chef_1.dishes.create!(name: "Omlette", description: "Greek style")
+      ingredient_1 = Ingredient.create!(name: "egg", calories: 60)
+      ingredient_2 = Ingredient.create!(name: "cheese", calories: 40)
+      DishIngredient.create!(dish: dish_1, ingredient: ingredient_1)
+      DishIngredient.create!(dish: dish_1, ingredient: ingredient_2)
+
+      visit dish_path(dish_1)
+      
+      expect(page).to have_content(100)
+    end
   end
 end
