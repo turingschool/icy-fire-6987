@@ -7,6 +7,7 @@ RSpec.describe "Dish Show Page" do
         @ingredient1 = Ingredient.create!(name: "Pasta", calories: 200)
         @ingredient2 = Ingredient.create!(name: "Ground Beef", calories: 300)
         @ingredient3 = Ingredient.create!(name: "Tomato Sauce", calories: 100)
+        @ingredient4 = Ingredient.create!(name: "Parmesan Cheese", calories: 150)
         @dish.ingredients << [@ingredient1, @ingredient2, @ingredient3]
     end
 
