@@ -18,6 +18,8 @@ RSpec.describe "Dish Show Page", type: :feature do
         @ingredient5 = Ingredient.create!(name: "Coleslaw", calories: 250)
         @ingredient6 = Ingredient.create!(name: "Soft Taco Shell", calories: 150)
         IngredientDish.create!(ingredient: @ingredient, dish: @dish)
+        IngredientDish.create!(ingredient: @ingredient2, dish: @dish)
+        IngredientDish.create!(ingredient: @ingredient3, dish: @dish)
       end
 # As a visitor
 # When I visit a dish's show page
@@ -27,12 +29,15 @@ RSpec.describe "Dish Show Page", type: :feature do
 # And I see the chef's name.
         it "I see the dish's name, description, ingredients, calorie count, and chef's name" do
        
-        # visit "/dishes/#{@dish.id}"
-         require 'pry'; binding.pry
-        # save_and_open_page
-        # expect(page).to have_content(@dish.name)
-
-
+        visit "/dishes/#{@dish.id}"
+        # require 'pry'; binding.pry
+        save_and_open_page
+        expect(page).to have_content("Dish: #{@dish.name}")
+        expect(page).to have_content(@dish.description)
+        expect(page).to have_content(@chef.name)
+        expect(page).to have_content(@ingredient.name)
+        expect(page).to have_content(@ingredient2.name)
+        expect(page).to have_content(@ingredient3.name)
       end
     end
   end
