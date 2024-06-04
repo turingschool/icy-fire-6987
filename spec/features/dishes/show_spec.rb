@@ -14,46 +14,46 @@ RSpec.describe "Dish Show Page" do
     end
 
     it "should show the dish with the description" do
-        visit dish_path(@dish)
+        visit dish_path(@dish1)
 
-        expect(page).to have_content(@dish.name)
-        expect(page).to have_content(@dish.description)
+        expect(page).to have_content(@dish1.name)
+        expect(page).to have_content(@dish1.description)
     end
 
     it "should show a list of ingredients" do
-        visit dish_path(@dish)
+        visit dish_path(@dish1)
 
-        @dish.ingredients. each do |ingredient|
+        @dish1.ingredients. each do |ingredient|
             expect(page).to have_content(ingredient.name)
         end
     end
 
     it "should show the total amount of calories" do
-        visit dish_path(@dish)
+        visit dish_path(@dish1)
 
         expect(page).to have_content("Total Calories: 600")
     end
 
     it "should show the chef's name" do
-        visit dish_path(@dish)
+        visit dish_path(@dish1)
 
         expect(page).to have_content(@chef.name)
     end
 
     it "should show a form to add an existing ingredient" do
-        visit dish_path(@dish)
+        visit dish_path(@dish1)
 
         expect(page).to have_selector("form")
         expect(page).to have_field("Ingredient ID")
     end
 
     it "should add an existing ingredient to the dish" do
-        visit dish_path(@dish)
+        visit dish_path(@dish1)
 
         fill_in "Ingredient ID", with: @ingredient4.id
         click_button "Add Ingredient"
 
-        expect(current_path).to eq(dish_path(@dish))
+        expect(current_path).to eq(dish_path(@dish1))
         expect(page).to have_content(@ingredient4.name)
     end
 

@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-
+  resources :chefs, only: [:show] do
+    resources :ingredients, only: [:index]
+  end
+  
   resources :dishes, only: [:show] do
     post "add_ingredient", on: :member
   end
