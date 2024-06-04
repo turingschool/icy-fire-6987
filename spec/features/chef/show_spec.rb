@@ -2,12 +2,6 @@ require "rails_helper"
 
 RSpec.describe "Chef Show Page" do
     describe "As A Visitor" do
-    # As a visitor
-    # When I visit a chef's show page
-    # I see a link to view a list of all ingredients that this chef uses in their dishes.
-    # When I click on that link
-    # I'm taken to a chef's ingredients index page
-    # and I can see a unique list of names of all the ingredients that this chef uses.
         scenario "I see a link to view a list of all ingredients that this chef uses in their dishes, click on that link, and see a unique list of names of all the ingredients that this chef uses" do
             chef = Chef.create!(name: "Gordon Ramsay")
             dish_1 = Dish.create!(name: "Grilled Cheese", description: "A Sandwhich as old as time, so simple yet so delicious", chef_id: chef.id)
