@@ -7,4 +7,9 @@ class IngredientsController < ApplicationController
 
     redirect_to dish_path(@dish)
   end
+
+  def index
+    @chef = Chef.find(params[:chef_id])
+    @ingredients = @chef.ingredients
+  end
 end
